@@ -1,0 +1,82 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+    <header>
+        <div class="powells-logo">
+            <img src="images/logo-0714.jpg">
+        </div>
+    </header>
+    
+    <main>
+        <div class="nav_bar">
+            <ul class="navbar">
+                <li><a href="index.hbs">Home</a></li>
+                <li><a href="books.hbs">Books</a></li>
+                <li><a href="authors.hbs">Authors</a></li>
+                <li><a class="active" href="genres.hbs">Genres</a></li>
+                <li><a href="customers.hbs">Customers</a></li>
+                <li><a href="sales.hbs">Sales</a></li>
+                <li><a href="books_authors.hbs">Books-Authors</a></li>
+            </ul>
+        </div>
+        <div>
+            <h1>Genres</h1>
+        </div>
+
+        <div>
+            <table id="genres_table" class="grid-container" style="margin-top: 50px">
+                <thead>
+                    <tr>
+                        <th>
+                            Genre ID
+                        </th>
+                        <th>
+                            Genre Name
+                        </th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="table-rows-update">
+                    {{#each data}}
+                    <tr data-value={{this.genre_id}}>
+                        <td>{{this.genre_id}}</td>
+                        <td>{{this.genre_name}}</td>
+                        <td><button onclick="deleteGenre({{this.genre_id}})">delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <script src="./js/delete_genre.js"></script>
+
+        </div>
+        <div>
+            <h3>Add Genre</h3>
+            <form class="form" id="add-genre" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="genreName">Genre: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="genreName" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Add">
+                    <a href="genres">
+                        <input type="button" value="Cancel">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/add_genre.js"></script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy Powell's Books Database Interface - Created by Team #42</p>
+    </footer>
+    
+</body>

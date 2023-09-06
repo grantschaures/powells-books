@@ -1,0 +1,164 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+    <header>
+        <div class="powells-logo">
+            <img src="images/logo-0714.jpg">
+        </div>
+    </header>
+    
+    <main>
+        <div class="nav_bar">
+            <ul class="navbar">
+                <li><a href="index.hbs">Home</a></li>
+                <li><a href="books.hbs">Books</a></li>
+                <li><a href="authors.hbs">Authors</a></li>
+                <li><a href="genres.hbs">Genres</a></li>
+                <li><a href="customers.hbs">Customers</a></li>
+                <li><a class="active" href="sales.hbs">Sales</a></li>
+                <li><a href="books_authors.hbs">Books-Authors</a></li>
+            </ul>
+        </div>
+        <div>
+            <h1>Sales</h1>
+        </div>
+
+        <div>
+            <table id="sales-table" class="grid-container" style="margin-top: 50px">
+                <thead>
+                    <tr>
+                        <th>
+                            Sale ID
+                        </th>
+                        <th>
+                            Book Title
+                        </th>
+                        <th>
+                            Customer Name
+                        </th>
+                        <th>
+                            Sale Amount (USD)
+                        </th>
+                        <th>
+                            Sale Date
+                        </th>
+                        <th>
+                            Sale Quantity
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="table-rows-update">
+                    {{#each data1}}
+                    <tr data-value={{this.sale_id}}>
+                        <td>{{this.sale_id}}</td>
+                        <td>{{this.book_title}}</td>
+                        <td>{{this.customer_name}}</td>
+                        <td>{{this.sale_amount}}</td>
+                        <td>{{this.sale_date}}</td>
+                        <td>{{this.sale_quantity}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                </table>
+        </div>
+        <div>
+            <h3>Search Sale</h3>
+            <form class="form" id="search-sale" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="search_saleId">Sale ID: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="search_saleId" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Search">
+                    <a href="sales.hbs">
+                        <input type="button" value="Reset">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/search_sale.js"></script>
+        </div>
+        <div>
+            <h3>Create Sale</h3>
+            <form class="form" id="create-sale" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="bookTitle">Select Book: </label>
+                            </td>
+                            <td>
+                                <select id="bookTitle" required>
+                                    <option value="">Select a Book</option>
+                                    {{#each data2}}
+                                    <option value="{{this.book_title}}">{{this.book_title}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>*Required</td>
+                        <tr>
+                        <tr>
+                            <td>
+                                <label for="customerName">Select Customer: </label>
+                            </td>
+                            <td>
+                                <select id="customerName" required>
+                                    <option value="">Select a Customer</option>
+                                    {{#each data3}}
+                                    <option value="{{this.customer_name}}">{{this.customer_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>*Required</td>
+                        <tr>
+                        <tr>
+                            <td>
+                                <label for="saleAmount">Sale Amount: </label>
+                            </td>
+                            <td>
+                                <input type="number" id="saleAmount" Step=0.01 required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="saleDate">Sale Date: </label>
+                            </td>
+                            <td>
+                                <input type="date" id="saleDate" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="saleQuantity">Sale Quantity: </label>
+                            </td>
+                            <td>
+                                <input type="number" id="saleQuantity" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Create">
+                    <a href="sales.hbs">
+                        <input type="button" value="Cancel">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/add_sale.js"></script>
+        </div>  
+    </main>
+
+    <footer>
+        <p>&copy Powell's Books Database Interface - Created by Team #42</p>
+    </footer>
+    
+</body>

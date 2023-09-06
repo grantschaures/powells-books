@@ -1,0 +1,188 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+    <header>
+        <div class="powells-logo">
+            <img src="images/logo-0714.jpg">
+        </div>
+    </header>
+    
+    <main>
+        <div class="nav_bar">
+            <ul class="navbar">
+                <li><a href="index.hbs">Home</a></li>
+                <li><a href="books.hbs">Books</a></li>
+                <li><a href="authors.hbs">Authors</a></li>
+                <li><a href="genres.hbs">Genres</a></li>
+                <li><a class="active" href="customers.hbs">Customers</a></li>
+                <li><a href="sales.hbs">Sales</a></li>
+                <li><a href="books_authors.hbs">Books-Authors</a></li>
+            </ul>
+        </div>
+        <div>
+            <h1>Customers</h1>
+        </div>
+
+        <div>
+            <table id="customers_table" class="grid-container" style="margin-top: 50px">
+                <thead>
+                    <tr>
+                        <th>
+                            Customer ID
+                        </th>
+                        <th>
+                            Customer Name
+                        </th>
+                        <th>
+                            Customer Address
+                        </th>
+                        <th>
+                            Customer Phone
+                        </th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                    <tbody id="table-rows-update">
+                        {{#each data}}
+                        <tr data-value={{this.customer_id}}>
+                            <td>{{this.customer_id}}</td>
+                            <td>{{this.customer_name}}</td>
+                            <td>{{this.customer_address}}</td>
+                            <td>{{this.customer_phone}}</td>
+                            <td><button onclick="deleteCustomer({{this.customer_id}})">delete</button></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                <script src="./js/delete_customer.js"></script>
+
+        </div>
+        <div>
+            <h3>Search Customer</h3>
+            <form class="form" id="search-customer" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="search_customerName">Customer Name: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="search_customerName" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Search">
+                    <a href="customers.hbs">
+                        <input type="button" value="Reset">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/search_customer.js"></script>
+        </div>
+        <div>
+            <h3>Add Customer</h3>
+            <form class="form" id="add-customer" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="customername">Customer Name: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="customerName" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="customerAddress">Customer Address: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="customerAddress" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="customerPhone">Customer Phone Number: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="customerPhone">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Add">
+                    <a href="customers.hbs">
+                        <input type="button" value="Cancel">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/add_customer.js"></script>
+        </div>
+        <div>
+            <h3>Update Customer Info</h3>
+            <form class="form" id="update-customer" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="update_customerID">Select Customer ID: </label>
+                            </td>
+                            <td>
+                                <select id="update_customerID" required>
+                                    <option value="">Select a Customer</option>
+                                    {{#each data}}
+                                    <option value="{{this.customer_id}}">{{this.customer_id}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_customerName">Customer Name: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="update_customerName" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_customerAddress">Customer Address: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="update_customerAddress" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_customerPhone">Customer Phone Number: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="update_customerPhone">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Update">
+                    <a href="customers.hbs">
+                        <input type="button" value="Cancel">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/update_customer.js"></script>
+        </div>
+        
+    </main>
+
+    <footer>
+        <p>&copy Powell's Books Database Interface - Created by Team #42</p>
+    </footer>
+    
+</body>

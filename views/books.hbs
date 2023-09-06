@@ -1,0 +1,298 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+    <header>
+        <div class="powells-logo">
+            <img src="images/logo-0714.jpg" alt="Powells Logo">
+        </div>
+    </header>
+    
+    <main>
+        <div class="nav_bar">
+            <ul class="navbar">
+                <li><a href="index.hbs">Home</a></li>
+                <li><a class="active" href="books.hbs">Books</a></li>
+                <li><a href="authors.hbs">Authors</a></li>
+                <li><a href="genres.hbs">Genres</a></li>
+                <li><a href="customers.hbs">Customers</a></li>
+                <li><a href="sales.hbs">Sales</a></li>
+                <li><a href="books_authors.hbs">Books-Authors</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h1>Books</h1>
+        </div>
+
+        <div id="booksContainer">
+            <table id="books_table" class="grid-container" style="margin-top: 50px">
+                <thead>
+                    <tr>
+                        <th>
+                            Book ID
+                        </th>
+                        <th>
+                            Book ISBN
+                        </th>
+                        <th>
+                            Book Title
+                        </th>
+                        <th>
+                            Author Name
+                        </th>
+                        <th>
+                            Book Publish Date
+                        </th>
+                        <th>
+                            Book Inventory
+                        </th>
+                        <th>
+                            Book Unit Price (USD)
+                        </th>
+                        <th>
+                            Genre Name
+                        </th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="booksTableBody">
+                    {{#each data1}}
+                    <tr data-value={{this.book_id}}>
+                        <td>{{this.book_id}}</td>
+                        <td>{{this.book_isbn}}</td>
+                        <td>{{this.book_title}}</td>
+                        <td>{{this.author_name}}</td>
+                        <td>{{this.book_publish_date}}</td>
+                        <td>{{this.book_inventory}}</td>
+                        <td>{{this.book_unit_price}}</td>
+                        <td>{{this.genre_name}}</td>
+                        <td><button onclick="deleteBook({{this.book_id}})">delete</button></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <script src="./js/delete_book.js"></script>
+
+        </div>
+        <div>
+            <h3>Search Books</h3>
+            <form class="form" id="search-book" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="search_bookTitle">Book Title: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="search_bookTitle" name="book_title" required>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Search">
+                    <a href="books.hbs">
+                        <input type="button" value="Reset" id="reset-button-books">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/search_book.js"></script>
+
+        </div>
+        <div>
+            <h3>Create Book</h3>
+            <form class="form" id="create-book" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="bookISBN">Book ISBN: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="bookISBN" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="bookTitle">Book Title: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="bookTitle" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="authorName">Select Author: </label>
+                            </td>
+                            <td>
+                                <select id="authorName" required>
+                                    <option value="">Select an Author</option>
+                                    {{#each data2}}
+                                    <option value="{{this.author_name}}">{{this.author_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>*Required</td>
+                        <tr>
+                            <td>
+                                <label for="publishDate">Publish Date: </label>
+                            </td>
+                            <td>
+                                <input type="date" id="publishDate" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="bookInventory">Book Inventory: </label>
+                            </td>
+                            <td>
+                                <input type="number" id="bookInventory" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="unitPrice">Unit Price: </label>
+                            </td>
+                            <td>
+                                <input type="number" id="unitPrice" Step=0.01 required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="genreName">Select Genre: </label>
+                            </td>
+                            <td>
+                                <select id="genreName" required>
+                                    <option value="">Select a Genre</option>
+                                    {{#each data3}}
+                                    <option value="{{this.genre_name}}">{{this.genre_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>*Required</td>
+                        <tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Create">
+                    <a href="books.hbs">
+                        <input type="button" value="Cancel">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/add_book.js"></script>
+
+        </div>
+        <div>
+            <h3>Update Book</h3>
+            <form class="form" id="update-book" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="update_bookID">Select Book ID: </label>
+                            </td>
+                            <td>
+                                <select id="update_bookID" required>
+                                    <option value="">Select a Book</option>
+                                    {{#each data1}}
+                                    <option value="{{this.book_id}}">{{this.book_id}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_bookISBN">Book ISBN: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="update_bookISBN" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_bookTitle">Book Title: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="update_bookTitle" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_authorName">Select Author: </label>
+                            </td>
+                            <td>
+                                <select id="update_authorName" required>
+                                    <option value="">Select an Author</option>
+                                    {{#each data2}}
+                                    <option value="{{this.author_name}}">{{this.author_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>*Required</td>
+                        <tr>
+                        <tr>
+                            <td>
+                                <label for="update_publishDate">Publish Date: </label>
+                            </td>
+                            <td>
+                                <input type="date" id="update_publishDate" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_bookInventory">Book Inventory: </label>
+                            </td>
+                            <td>
+                                <input type="number" id="update_bookInventory" required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_unitPrice">Unit Price: </label>
+                            </td>
+                            <td>
+                                <input type="number" id="update_unitPrice" Step=0.01 required>
+                            </td>
+                            <td>*Required</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="update_genreName">Select Genre: </label>
+                            </td>
+                            <td>
+                                <select id="update_genreName" required>
+                                    <option value="">Select a Genre</option>
+                                    {{#each data3}}
+                                    <option value="{{this.genre_name}}">{{this.genre_name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>*Required</td>
+                        <tr>
+                    </tbody>
+                </table>
+                <div class="form-buttons">
+                    <input type="submit" value="Update">
+                    <a href="books.hbs">
+                        <input type="button" value="Cancel">
+                    </a>
+                </div>
+            </form>
+            <script src="./js/update_book.js"></script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy Powell's Books Database Interface - Created by Team #42</p>
+    </footer>
+</body>
