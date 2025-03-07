@@ -125,8 +125,6 @@ INSERT INTO Sales (sale_amount, sale_date, sale_quantity, book_id, customer_id) 
 -- Repopulate Sales Table after addition --
 SELECT s.sale_id, b.book_title, c.customer_name, s.sale_amount, s.sale_date, s.sale_quantity FROM Sales s JOIN Books b ON s.book_id = b.book_id JOIN Customers c ON s.customer_id = c.customer_id;
 
-
-
 -- Books_has_Authors PAGE --
 -- Populate Books has Authors table --
 SELECT bha.book_author_id, b.book_title, a.author_name FROM Books_has_Authors bha JOIN Books b ON bha.book_id = b.book_id JOIN Authors a ON bha.author_id = a.author_id;
